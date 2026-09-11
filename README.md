@@ -1,8 +1,6 @@
 # startup-harness-codex
 
-Public **Codex + Limen** delivery harness for startups: orchestrate scripts, pstack pointers, ticket quality bar, and a **TARGET 100%** MEGA spider chart (design bar — not a measured score).
-
-Built for the [MEGA autonomous product development](https://mega.dev/autonomous-product-development) challenge context.
+Public **Codex + Limen** delivery harness for startups: orchestrate scripts, pstack pointers, ticket quality bar, and a **TARGET 100%** 24-spoke skill spider chart (design bar — not a measured score).
 
 ## Get Limen
 
@@ -38,7 +36,7 @@ bash "$PRODUCT_ROOT/.agents/delivery/scripts/install-launchd.sh"
 
 ## Charts (TARGET / design bar)
 
-> **CRITICAL:** Charts showing **100%** are a **TARGET / design bar**, **NOT** a measured MEGA Assessment score. Do **not** claim measured 100% / ORC 100%.
+> **CRITICAL:** Charts showing **100%** are a **TARGET / design bar**, **NOT** a measured assessment score. Do **not** claim measured 100% / ORC 100%.
 
 ### TARGET 100% (aspirational)
 
@@ -65,7 +63,6 @@ python3 -m venv .venv && .venv/bin/pip install matplotlib
 
 - **Limen:** get limen from https://mega.dev/autonomous-product-development — you can download Limen there.
 - **Charts / mega-card skill:** https://github.com/piotrkrych2/Random-Skills — credit **piotrkrych2 / mega-card** for FUT card + 24-spoke spider charts (vendored under `vendor/mega-card/`).
-- **MEGA** autonomous product development challenge context.
 - **pstack quality bar (optional):** Lauren Tan / [poteto](https://x.com/poteto) style — see [open-pstack](https://github.com/ericlitman/open-pstack) and `docs/pstack.md`. Keep LICENSE notices if you package anything from open-pstack.
 
 See also `ATTRIBUTION.md`.
