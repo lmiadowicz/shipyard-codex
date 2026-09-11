@@ -1,12 +1,16 @@
 # startup-harness-codex
 
-Public **Codex + Limen** delivery harness for startups: board (NOW/NEXT/PARK), vision + styleguide, ticket quality bar, orchestrate scripts, and **TARGET / ~90%** spider charts (design bars — not measured scores).
+**For orchestrating my startup projects — I build microsaas, tools, mobile apps, etc. Optimized for highest quality, reliability, and token efficiency.**
+
+Do orkiestracji projektów startupowych (mikrosaasy, narzędzia, apki mobilne itd.) — jakość, niezawodność i oszczędność tokenów.
+
+Codex + Limen delivery harness: board (NOW/NEXT/PARK), vision + styleguide, ticket quality bar, orchestrate scripts. **TARGET / ~90%** spider charts are **design bars — not measured scores**.
 
 ## Get Limen
 
 **Download Limen from:** https://mega.dev/autonomous-product-development  
 
-You can download Limen there (and related Herdr tooling). This harness assumes `limen` / `herdr` / `gh` / Codex are available on PATH (Mac or VPS).
+You can download Limen there (and related Herdr tooling). This harness assumes `limen` / `herdr` / `gh` / Codex are available on PATH (**Mac or VPS**).
 
 ## How it works
 
@@ -32,6 +36,8 @@ Full write-up: [`docs/how-it-works.md`](docs/how-it-works.md).
 
 ## Install into a project
 
+Works on **MacBook** and **Linux VPS** (`setup.sh` detects Darwin vs Linux).
+
 ```bash
 git clone https://github.com/lmiadowicz/startup-harness-codex.git
 cd startup-harness-codex
@@ -42,6 +48,7 @@ export PRODUCT_ROOT=/path/to/your-product
 bash "$PRODUCT_ROOT/.agents/delivery/scripts/status-dump.sh"
 # macOS optional:
 bash "$PRODUCT_ROOT/.agents/delivery/scripts/install-launchd.sh"
+# Linux/VPS: use cron or systemd — see docs/install-into-project.md
 ```
 
 **What lands:** `.agents/delivery/scripts/` (orchestrate, review-and-label, status-dump, smoke, install-launchd), `PLAYBOOK.md`, `TICKET-TEMPLATE.md`, optional `board/` + `spec/vision.md` + `spec/styleguide.md` if missing.
@@ -53,7 +60,9 @@ Step-by-step: [`docs/install-into-project.md`](docs/install-into-project.md).
 > **CRITICAL:** **TARGET 100%** is a **design bar**, **NOT** a measured score.  
 > The **~90%** chart is a **harness coverage design goal / example render**, **NOT** a claimed measured score.
 
-Charts rendered with **Piotr’s mega-card** skill ([piotrkrych2/Random-Skills](https://github.com/piotrkrych2/Random-Skills)) — FUT card + 24-spoke spider via Chrome headless (`vendor/mega-card/render.py`).
+What traits / ORC / groups mean: [`docs/chart-traits.md`](docs/chart-traits.md).
+
+Charts rendered with **Piotr’s mega-card** ([piotrkrych2/Random-Skills](https://github.com/piotrkrych2/Random-Skills)) — FUT card + 24-spoke spider via Chrome headless (`bash scripts/render-charts.sh` → `vendor/mega-card/render.py`).
 
 ### TARGET 100% (aspirational)
 
@@ -68,15 +77,12 @@ Honest gaps called out in the report: Context Anchoring, Evidence, Progressive D
 ### Rebuild charts
 
 ```bash
-# Preferred: Piotr mega-card (needs Chrome/Chromium on the machine)
 npm run charts
 # or:
-python3 vendor/mega-card/render.py charts/mega-assessment-TARGET-100.md --name TARGET --out-dir charts/tmp-target
-python3 vendor/mega-card/render.py charts/mega-assessment-COVERAGE-90.md --name HARNESS --out-dir charts/tmp-90
-
-# Optional matplotlib fallback:
-python3 scripts/render-charts.py
+bash scripts/render-charts.sh
 ```
+
+Needs Google Chrome / Chromium on the machine. Shell wrapper only; Python is an implementation detail of the vendored mega-card skill.
 
 Measured example (labeled, not TARGET): [`charts/examples/pajeczyna-measured-example.png`](charts/examples/pajeczyna-measured-example.png).
 
@@ -93,8 +99,10 @@ Measured example (labeled, not TARGET): [`charts/examples/pajeczyna-measured-exa
 | `docs/limen.md` | Herdr `--tab` spawn examples (`gpt-6-astra`, thinking high) |
 | `docs/codex-usage-reset.md` | When usage hits 0% → reset in Codex desktop |
 | `docs/pstack.md` | Optional pstack quality-bar pointer |
+| `docs/chart-traits.md` | ORC / groups / T01–T24 meanings |
 | `vendor/mega-card/` | Piotr’s chart skill (attributed) |
 | `setup.sh` | Primary installer (Mac + VPS) |
+| `scripts/render-charts.sh` | Rebuild mega-card PNGs |
 
 ## Credits
 
