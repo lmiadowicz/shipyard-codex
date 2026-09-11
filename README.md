@@ -1,121 +1,133 @@
-# startup-harness-codex
+# Shipyard · Codex
 
-**For orchestrating my startup projects — I build microsaas, tools, mobile apps, etc. Optimized for highest quality, reliability, and token efficiency.**
+<p align="center">
+  <img src="docs/brand/shipyard-readme-banner.png" alt="Shipyard — AI delivery harness" width="100%"/>
+</p>
 
-Do orkiestracji projektów startupowych (mikrosaasy, narzędzia, apki mobilne itd.) — jakość, niezawodność i oszczędność tokenów.
+**AI delivery shipyard for microsaas, tools, and mobile apps** — quality, reliability, and token efficiency.
 
-Codex + Limen delivery harness: board (NOW/NEXT/PARK), vision + styleguide, ticket quality bar, orchestrate scripts. **TARGET / ~90%** spider charts are **design bars — not measured scores**.
+Public repo name today: [`startup-harness-codex`](https://github.com/lmiadowicz/startup-harness-codex) (branding target: **shipyard-codex**). Sibling: [`startup-harness-grok-codex`](https://github.com/lmiadowicz/startup-harness-grok-codex).
 
-## Get Limen
+Codex + limen/Pi orchestration without a Grok coordinator layer.
 
-**Download Limen from:** https://mega.dev/autonomous-product-development  
+## Why this exists
 
-You can download Limen there (and related Herdr tooling). This harness assumes `limen` / `herdr` / `gh` / Codex are available on PATH (**Mac or VPS**).
+Most “agent coding” setups burn tokens, drift UI, and ship half-done PRs. This harness is the opposite posture:
 
-## How it works
+1. **Board first** — NOW / NEXT / PARK so work is visible.
+2. **Done-when tickets** — In / Out / Forbidden before any worker starts.
+3. **Narrow workers** — limen `--tab` + Codex, max 1–2 live jobs.
+4. **Proof before merge** — Reviewer PASS + evidence, not vibes.
+5. **Token discipline** — shell/launchd for the loop, no chat spam.
+
+Limen: https://mega.dev/autonomous-product-development · Assessment: https://mega.dev/#assessment · Charts: [piotrkrych2/Random-Skills mega-card](https://github.com/piotrkrych2/Random-Skills)
+
+## How it works (animated)
+
+Open the interactive walkthrough — board fills with successive features while the pipeline lights up:
+
+**→ [`docs/orchestration-animation.html`](docs/orchestration-animation.html)**
+
+What you’ll see:
+
+1. Vision + styleguide seed the work
+2. Features land in **PARK**, promote to **NEXT**, pull into **NOW**
+3. Ticket gets falsifiable **Done-when**
+4. **limen / Pi** workers spawn → **Codex** implements
+5. **Reviewer** PASS/HOLD → **Merge**
+6. Board refills; the next feature ships
 
 ```mermaid
 flowchart LR
   Vision[Vision] --> Tickets[Tickets Done-when]
   Style[Styleguide] --> Tickets
   Board[Board NOW/NEXT/PARK] --> Tickets
-  Tickets --> Limen[limen --tab + Codex]
-  Limen --> Review[Reviewer / Taste]
-  Review --> Merge[Owner merge]
+  Tickets --> Limen[limen/Pi + Codex]
+  Limen --> Review[Reviewer]
+  Review --> Merge[Merge]
   Merge --> Board
 ```
 
-| Piece | Role |
-| --- | --- |
-| **Board** | Pulls / tracks tasks — `STATUS.md`, `ACTIONS.json`, NOW / NEXT / PARK |
-| **Vision** | `spec/vision.md` — product north star |
-| **Styleguides** | `spec/styleguide.md` — UI/craft rules agents must follow |
-| **Tickets** | Done-when + In/Out/Forbidden → limen/Codex workers → review → merge |
+## Measured coverage (not a target fantasy)
 
-Full write-up: [`docs/how-it-works.md`](docs/how-it-works.md).
+Local scan **2026-09-11** — **measured ORC 65**. Gaps at **T04 / T09 / T10 / T11 / T19** are often unmeasured (scored 0), not silently filled to 90%.
 
-## Install into a project
+![Measured ORC 65](charts/measured-codex-only.png)
 
-Works on **MacBook** and **Linux VPS** (`setup.sh` detects Darwin vs Linux).
+Source: [`charts/mega-assessment-MEASURED-codex-only.md`](charts/mega-assessment-MEASURED-codex-only.md). Rebuild: `npm run charts` (TypeScript mega-card). How scores work: [`docs/chart-traits.md`](docs/chart-traits.md)..
+
+### What ORC and the traits mean
+
+- **ORC** = mean of 24 trait scores (agent orchestrator score on the FUT card).
+- **Trait score** = `(applied + declined) / eligible × 100` (declined = conscious skip, counts positive).
+- **Groups:** INT Intent · KTX Context · DIA Diagnosis · DEL Delegation · STR Steering · WER Verification.
+- Card metal: **75+ gold**, **65–74 silver**, below **bronze**.
+
+| ID | Trait | What it means in this harness |
+| --- | --- | --- |
+| T01 | Intent Clarity | Ticket/goal states the outcome in one clear sentence |
+| T02 | Problem Framing | Scope framed as a problem, not a pile of tasks |
+| T03 | Agent State Modeling | Workers know board/STATUS and what’s already in flight |
+| T04 | Context Anchoring | Attachments, branches, and durable context stay visible (often **unmeasured**/0 today) |
+| T05 | Constraint Precision | In / Out / Forbidden are explicit |
+| T06 | Falsifiable Acceptance | Done-when checks someone can fail |
+| T07 | Problem Understanding First | Read before inventing a fix |
+| T08 | Root-Cause Orientation | Fix the cause, not the symptom |
+| T09 | Evidence Injection | Decisions cite Preview/logs/evidence (often **unmeasured**/0) |
+| T10 | Progressive Disclosure | Don’t dump the whole repo into every prompt (often **unmeasured**/0) |
+| T11 | Context Economy | Compact context; avoid token waste (often **unmeasured**/0) |
+| T12 | Durable Memory | Vision, styleguide, playbook persist across sessions |
+| T13 | Inspect-Before-Edit | Read the code path before patching |
+| T14 | Capability Provisioning | limen/`--tab`, tools, and scripts are ready |
+| T15 | Delegation Judgment | Right worker for the ticket; max 1–2 live |
+| T16 | Decomposition Skill | Big goals split into shippable tickets |
+| T17 | Agent Brief Quality | Briefs are tight and actionable |
+| T18 | Decision Rights | Who merges / who only advises (thin coordinator) |
+| T19 | Parallelism Hygiene | No colliding workers on the same surface (often **unmeasured**/0) |
+| T20 | Result Integration | PR + board update + STATUS stay consistent |
+| T21 | Feedback Specificity | Review comments are concrete |
+| T22 | Steering and Trust | Owner steers taste; automation owns the loop |
+| T23 | Verification Closure | Reviewer PASS + evidence before merge |
+| T24 | Recovery and Learning | Failures become playbook/ticket upgrades |
+
+Closing unmeasured gaps (especially KTX + parallelism) is how measured ORC moves toward ~90% — by process and evidence, never by redrawing a TARGET chart.
+
+## Install (Mac + VPS)
 
 ```bash
 git clone https://github.com/lmiadowicz/startup-harness-codex.git
 cd startup-harness-codex
-bash setup.sh                         # tool checks + limen URL
-bash setup.sh /path/to/your-product   # install into product repo
-
+bash setup.sh
+bash setup.sh /path/to/your-product
 export PRODUCT_ROOT=/path/to/your-product
 bash "$PRODUCT_ROOT/.agents/delivery/scripts/status-dump.sh"
-# macOS optional:
-bash "$PRODUCT_ROOT/.agents/delivery/scripts/install-launchd.sh"
-# Linux/VPS: use cron or systemd — see docs/install-into-project.md
 ```
 
-**What lands:** `.agents/delivery/scripts/` (orchestrate, review-and-label, status-dump, smoke, install-launchd), `PLAYBOOK.md`, `TICKET-TEMPLATE.md`, optional `board/` + `spec/vision.md` + `spec/styleguide.md` if missing.
+| Tool | Install |
+| --- | --- |
+| **herdr** | `curl -fsSL https://herdr.dev/install.sh \| bash` · [herdrdev/herdr](https://github.com/herdrdev/herdr) |
+| **Pi** | [pi.dev](https://pi.dev) / coding-agent packages |
+| **limen** | [mega.dev autonomous product development](https://mega.dev/autonomous-product-development) |
+| **Codex** | OpenAI Codex CLI / ChatGPT Codex desktop |
+| **gh** | https://cli.github.com/ |
 
-Step-by-step: [`docs/install-into-project.md`](docs/install-into-project.md).
+## Quality bar (pstack)
 
-## Charts (design bars — not measured)
+Recommended: [open-pstack](https://github.com/ericlitman/open-pstack) / [cursor pstack](https://github.com/cursor/plugins/tree/main/pstack). See [`docs/pstack.md`](docs/pstack.md).
 
-> **CRITICAL:** **TARGET 100%** is a **design bar**, **NOT** a measured score.  
-> The **~90%** chart is a **harness coverage design goal / example render**, **NOT** a claimed measured score.
-
-What traits / ORC / groups mean: [`docs/chart-traits.md`](docs/chart-traits.md).
-
-Charts rendered with **Piotr’s mega-card** ([piotrkrych2/Random-Skills](https://github.com/piotrkrych2/Random-Skills)) — FUT card + 24-spoke spider via Chrome headless (`bash scripts/render-charts.sh` → `vendor/mega-card/render.py`).
-
-### TARGET 100% (aspirational)
-
-![TARGET 100% design bar — mega-card](charts/target-100.png)
-
-### ~90% harness coverage (honest gaps)
-
-Honest gaps called out in the report: Context Anchoring, Evidence, Progressive Disclosure, Parallelism, Verification Closure.
-
-![~90% coverage design goal — mega-card](charts/coverage-90.png)
-
-### Rebuild charts
-
-```bash
-npm run charts
-# or:
-bash scripts/render-charts.sh
-```
-
-Needs Google Chrome / Chromium on the machine. Shell wrapper only; Python is an implementation detail of the vendored mega-card skill.
-
-Measured example (labeled, not TARGET): [`charts/examples/pajeczyna-measured-example.png`](charts/examples/pajeczyna-measured-example.png).
-
-## What you get
+## What’s in the box
 
 | Path | Purpose |
 | --- | --- |
-| `.agents/delivery/scripts/` | orchestrate / review-and-label / status-dump / smoke / install-launchd |
-| `.agents/delivery/PLAYBOOK.md` | Quality bar, max 1–2 jobs, evidence |
-| `.agents/delivery/TICKET-TEMPLATE.md` | In / Out / Forbidden + Done-when |
-| `board/` | Sample STATUS / ACTIONS / NOW–NEXT–PARK |
-| `spec/vision.md` | North star sample |
-| `spec/styleguide.md` | Craft rules sample |
-| `docs/limen.md` | Herdr `--tab` spawn examples (`gpt-6-astra`, thinking high) |
-| `docs/codex-usage-reset.md` | When usage hits 0% → reset in Codex desktop |
-| `docs/pstack.md` | Optional pstack quality-bar pointer |
-| `docs/chart-traits.md` | ORC / groups / T01–T24 meanings |
-| `vendor/mega-card/` | Piotr’s chart skill (attributed) |
-| `setup.sh` | Primary installer (Mac + VPS) |
-| `scripts/render-charts.sh` | Rebuild mega-card PNGs |
-
-## Credits
-
-- **Limen:** https://mega.dev/autonomous-product-development — you can download Limen there.
-- **Charts / mega-card:** https://github.com/piotrkrych2/Random-Skills — credit **piotrkrych2 / mega-card**.
-- **pstack (optional):** Lauren Tan / [poteto](https://x.com/poteto) style — [open-pstack](https://github.com/ericlitman/open-pstack); see `docs/pstack.md`.
-
-See `ATTRIBUTION.md`.
-
-## Related
-
-- Sibling with Grok Bot token-budget rules: [`startup-harness-grok-codex`](https://github.com/lmiadowicz/startup-harness-grok-codex)
+| `.agents/delivery/` | Playbook, ticket template, orchestrate / review / status scripts |
+| `board/` | Sample NOW/NEXT/PARK + STATUS/ACTIONS |
+| `spec/` | Sample vision + styleguide |
+| `docs/orchestration-animation.html` | Board + flow animation |
+| `docs/brand/` | Mascot banner + icon |
+| `charts/` | Measured mega-card PNG + assessment markdown |
+| `vendor/mega-card/` | Piotr mega-card renderer (attributed) |
+| `setup.sh` | Mac + VPS installer |
 
 ## License
 
-Scripts and docs: use freely for your product harness. Vendored `vendor/mega-card/` retains upstream attribution. Upstream limen / pstack / Codex remain under their own terms.
+Scripts and docs: use freely. Vendored `vendor/mega-card/` keeps upstream attribution. Limen / pstack / Codex remain under their own terms.
