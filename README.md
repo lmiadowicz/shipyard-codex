@@ -8,7 +8,7 @@
 
 Repo: [`shipyard-codex`](https://github.com/lmiadowicz/shipyard-codex) · Sibling: [`shipyard-grok-codex`](https://github.com/lmiadowicz/shipyard-grok-codex)
 
-No Grok layer — Codex + limen/Pi run the loop.
+Codex + limen/Pi run the loop.
 
 ## Why this exists
 
