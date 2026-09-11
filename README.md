@@ -4,11 +4,11 @@
   <img src="docs/brand/shipyard-readme-banner.png" alt="Shipyard — AI delivery harness" width="100%"/>
 </p>
 
-**AI delivery shipyard for microsaas, tools, and mobile apps** — quality, reliability, and token efficiency.
+**Board → tickets → limen/Pi → Codex → review → merge.** A delivery harness for microsaas, tools, and mobile apps — quality, reliability, token efficiency.
 
-Public repo name today: [`startup-harness-codex`](https://github.com/lmiadowicz/startup-harness-codex) (branding target: **shipyard-codex**). Sibling: [`startup-harness-grok-codex`](https://github.com/lmiadowicz/startup-harness-grok-codex).
+Repo: [`shipyard-codex`](https://github.com/lmiadowicz/shipyard-codex) · Sibling: [`shipyard-grok-codex`](https://github.com/lmiadowicz/shipyard-grok-codex)
 
-Codex + limen/Pi orchestration without a Grok coordinator layer.
+No Grok layer — Codex + limen/Pi run the loop.
 
 ## Why this exists
 
@@ -95,8 +95,8 @@ Closing unmeasured gaps (especially KTX + parallelism) is how measured ORC moves
 ## Install (Mac + VPS)
 
 ```bash
-git clone https://github.com/lmiadowicz/startup-harness-codex.git
-cd startup-harness-codex
+git clone https://github.com/lmiadowicz/shipyard-codex.git
+cd shipyard-codex
 bash setup.sh
 bash setup.sh /path/to/your-product
 export PRODUCT_ROOT=/path/to/your-product
